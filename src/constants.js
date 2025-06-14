@@ -71,7 +71,7 @@ export const professionalExperienceData = [
     role: 'Business Analyst Intern',
     company: 'Snapmint Credit Advisory Pvt. Ltd',
     duration: 'Jun 2025 - Aug 2025 (Expected)',
-    desc: "Secured competitive internship with ₹25,000 monthly stipend at India's leading Zero Cost EMI fintech platform. Developing advanced data analytics and business intelligence capabilities in BNPL sector. Gaining expertise in credit risk assessment, consumer behavior analysis, and regulatory compliance. Working with platform serving 4+ million consumers and handling ₹2,000+ crores in transactions.",
+    desc: "Selected for competitive Business Analyst internship at India's leading Zero Cost EMI fintech platform serving 4+ million consumers. Currently developing advanced data analytics and business intelligence capabilities in the BNPL (Buy Now Pay Later) sector with a platform handling ₹2,000+ crores in transactions. Gaining comprehensive expertise in credit risk assessment, consumer behavior analysis, and regulatory compliance within RBI-registered NBFC operations while building stakeholder management and cross-functional collaboration skills through exposure to 700+ brand partnerships and enterprise client relationships.",
     img: snap // Use the imported image variable
   },
   {
