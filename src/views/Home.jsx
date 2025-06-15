@@ -71,7 +71,7 @@ const Home = () => {
             <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
               <div className="mt-3 sm:mt-0 cursor-pointer w-1/2">
                 <a
-                  href="https://drive.google.com/file/d/1aqoIHEH15kq4A_eM0J4IS-zyQJ9aGrBt/view?usp=sharing" // Replace Your_Resume.pdf with your actual file name
+                  href="https://drive.google.com/file/d/1QE6jut2BrP8NiBOsYSrGZkGziIH-aQzT/view?usp=sharing" // Replace Your_Resume.pdf with your actual file name
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-200 md:py-4 md:text-lg md:px-10"
