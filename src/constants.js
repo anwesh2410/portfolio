@@ -108,7 +108,7 @@ export const projectData = [
     description: "Bachelor Thesis under Dr. Binod Kumar. Extended the open-source RingBDStack/DyG-RAG framework into an event-centric dynamic-graph RAG system for temporal question answering over PDFs; added PDF ingestion, a Streamlit UI, 2D/3D interactive network visualizations with cluster detection, and multi-format export. Cut LLM operating cost by 96% vs. GPT-4o by integrating Gemini 2.5, achieved 100% event-extraction success on the benchmark set, and delivered 3–6 second query latency via GPU-accelerated BERT NER + cross-encoder reranking, plus 90% savings on repeated queries via multi-level caching.",
     technologies: "Python, Google Gemini 2.5, BERT NER (CUDA), NetworkX, NanoVectorDB, Streamlit, Plotly, PyVis",
     imageUrl: aiBanner,
-    link: "https://github.com/anwesh2410"
+    link: "https://github.com/anwesh2410/Temporal_RAG"
   },
   {
     id: 2,

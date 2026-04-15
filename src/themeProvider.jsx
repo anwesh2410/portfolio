@@ -2,9 +2,8 @@ import React, { createContext, useReducer } from "react";
 
 export const ThemeContext = createContext();
 // Note: `darkMode` naming is inverted throughout this codebase — when true, the UI
-// renders LIGHT (bg-white). Setting initial state to `false` so the site loads in
-// the visual dark theme by default.
-const initialState = { darkMode: false };
+// renders LIGHT (bg-white). Default to `true` so the site loads light (dark mode off).
+const initialState = { darkMode: true };
 
 const themeReducer = (state, action) => {
   switch (action.type) {
