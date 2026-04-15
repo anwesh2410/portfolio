@@ -24,39 +24,58 @@ const ProfessionalExperience = () => {
         >
           Professional Experience
         </h2>
-        <div className="mt-8 flex md:flex-row justify-around flex-col md:items-stretch items-center ">
-          {professionalExperienceData.map((el) => ( // Ensure this line uses professionalExperienceData
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {professionalExperienceData.map((el) => (
             <motion.div
               key={el.name}
               initial="hidden"
               whileInView={"visible"}
+              viewport={{ once: true }}
               variants={{
-                visible: { opacity: 1, scale: 1 },
-                hidden: { opacity: 0, scale: 0 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+                hidden: { opacity: 0, y: 30 },
               }}
               className={
                 theme.state.darkMode
-                  ? "md:w-2/5 p-6 bg-white rounded-lg flex flex-col mt-8 shadow-lg"
-                  : "md:w-2/5 p-6 bg-gray-800 text-white rounded-lg flex flex-col mt-8 shadow-lg"
+                  ? "p-6 md:p-7 bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow flex flex-col border border-gray-200"
+                  : "p-6 md:p-7 bg-gray-800 text-white rounded-xl shadow-md hover:shadow-xl transition-shadow flex flex-col border border-gray-700"
               }
             >
-              {el.img && (
-                <img
-                  src={el.img}
-                  alt={el.name}
-                  className="w-16 h-16 mx-auto mb-4"
-                />
-              )}
-              <h4 className="text-2xl font-bold mt-4 text-center">
-                {el.role}
-              </h4>
-              <p className="text-lg font-semibold text-blue-500 text-center">
-                {el.company}
+              <div className="flex items-start gap-4">
+                {el.img && (
+                  <img
+                    src={el.img}
+                    alt={el.name}
+                    className="w-14 h-14 rounded-md object-cover flex-shrink-0"
+                  />
+                )}
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-xl font-bold leading-tight">
+                    {el.role}
+                  </h4>
+                  <p className="text-base font-semibold text-blue-500 mt-1">
+                    {el.company}
+                  </p>
+                  <p
+                    className={
+                      theme.state.darkMode
+                        ? "text-sm text-gray-500 mt-0.5"
+                        : "text-sm text-gray-400 mt-0.5"
+                    }
+                  >
+                    {el.duration}
+                  </p>
+                </div>
+              </div>
+              <p
+                className={
+                  theme.state.darkMode
+                    ? "text-base mt-4 text-gray-700 leading-relaxed"
+                    : "text-base mt-4 text-gray-200 leading-relaxed"
+                }
+              >
+                {el.desc}
               </p>
-              <p className="text-md text-gray-500 dark:text-gray-400 text-center mb-2">
-                {el.duration}
-              </p>
-              <p className="text-lg mt-2 text-justify">{el.desc}</p>
             </motion.div>
           ))}
         </div>

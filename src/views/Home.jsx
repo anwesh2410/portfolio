@@ -34,13 +34,15 @@ const Home = () => {
               <span className="block text-blue-500 z-0 lg:inline">
                 <Typical
                   steps={[
+                    "Founding AI Engineer",
+                    1000,
                     "AI Engineer",
                     1000,
                     "Data Scientist",
                     1000,
                     "ML Engineer",
                     1000,
-                    "Data Analyst",
+                    "LLM / RAG Builder",
                     1000,
                   ]}
                   loop={Infinity}
@@ -54,7 +56,7 @@ const Home = () => {
                   : "mt-3 text-base text-white sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
               }
             >
-              I am a final year student at IIT Jodhpur. I am currently working at Snapmint as a Business Analyst Intern.
+              Final-year B.Tech student (AI & Data Science) at IIT Jodhpur — graduating May 2026. Currently Founding AI Engineer at Wisemate (London, Remote), building agentic AI workflows for sales automation. Previously shipped production ML at Snapmint (fintech) and ActionSync (enterprise AI).
             </p>
             <div className="flex md:justify-start ">
               {contactLinks.map((el) => (

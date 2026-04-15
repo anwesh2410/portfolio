@@ -30,9 +30,7 @@ const About = () => {
                   : "mt-4 text-xl text-justify text-white"
               }
             >
-              I'm Ale Anwesh, a prefinal-year B.Tech student specializing in Artificial Intelligence and Data Science Engineering at the prestigious Indian Institute of Technology, Jodhour. With a strong foundation in machine learning, data engineering, and software development, I bridge the gap between cutting-edge research and practical business applications.
-
-
+              I'm Ale Anwesh, a final-year B.Tech student in Artificial Intelligence and Data Science at the Indian Institute of Technology, Jodhpur (graduating May 2026). I currently serve as Founding AI Engineer at Wisemate (London, Remote), where I own the 0→1 AI stack — designing agentic workflows, building evaluation harnesses, and orchestrating multi-provider LLM systems. Prior internships: Kavida.ai, ActionSync, and Snapmint, India's leading Zero-Cost EMI fintech, where I shipped a propensity-scoring model that lifted campaign CTR by 4x in a live A/B test. My interests live at the intersection of fintech, autonomy, and data systems at scale.
             </p>
           </motion.div>
           <motion.div
