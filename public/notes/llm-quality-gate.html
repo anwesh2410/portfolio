@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How I keep an LLM sales agent from saying things that aren&#x27;t true · Anwesh Ale</title>
+<meta name="description" content="How grounding, an LLM judge and editor, a fail-closed pre-send gate and idempotent sends keep an AI sales agent from sending false claims.">
+<style>
+:root{--bg:#fbfbf8;--fg:#1d2320;--muted:#5d6762;--accent:#2f6b4f;--line:#dde2dc}
+@media (prefers-color-scheme:dark){:root{--bg:#141816;--fg:#e7ece8;--muted:#9aa59f;--accent:#7cc39c;--line:#2c332f}}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 Georgia,"Iowan Old Style",serif}
+main{max-width:680px;margin:0 auto;padding:48px max(20px,env(safe-area-inset-left))}
+h1{font:700 2rem/1.2 system-ui,sans-serif;margin:0 0 8px;text-wrap:balance}
+h2{font:600 1.2rem system-ui,sans-serif;margin:2em 0 .4em}
+.by{color:var(--muted);font:.9rem system-ui,sans-serif;margin-bottom:2em}
+a{color:var(--accent)} code{font:.9em ui-monospace,monospace;background:var(--line);padding:1px 5px;border-radius:4px}
+hr{border:0;border-top:1px solid var(--line);margin:2.5em 0}
+footer{color:var(--muted);font:.9rem system-ui,sans-serif}
+</style></head><body><main>
+<h1>How I keep an LLM sales agent from saying things that aren&#x27;t true</h1>
+<div class="by">Anwesh Ale · AI engineer</div>
+<p>At Wisemate I build the AI agents that write and send outbound sales emails for B2B customers. An email that has gone out can't be taken back, so the expensive failure isn't a bad sentence. It's a confident, specific claim that isn't true. We had exactly that once: the model invented pricing, and it reached a real email. This is the pipeline I built so that it can't happen again.</p>
+<h2>1. Only grounded facts get into the prompt</h2>
+<p>The model writes from a short company brief, not the raw website. When the brief is extracted, the model must return each fact <em>with the quote it came from</em>. A fact is kept only if that quote is a verified, exact substring of the customer's knowledge base. Anything the model "remembers" or paraphrases into existence is dropped before generation starts.</p>
+<h2>2. A judge, then an editor</h2>
+<p>Generation is staged:
+1. <strong>Judge.</strong> An LLM judge checks the prospect and the draft against the brief and returns a structured, schema-validated decision.
+2. <strong>Editor.</strong> An LLM editor rewrites only what the judge flagged.</p>
+<p>Each stage has one narrow job, which makes failures easy to attribute and test.</p>
+<h2>3. One fail-closed gate before anything sends</h2>
+<p>Every outbound path, on every channel, passes through a single pre-send gate:
+- If any check fails, or the checker itself errors, the message is <strong>blocked, not sent</strong>. "Fail closed" means an outage of the checker can't turn into unchecked emails.
+- Every decision is written to an audit trail of pipeline events, so a blocked message can be traced back to the exact claim and stage.</p>
+<h2>4. The send itself is boring on purpose</h2>
+<p>The quality gate is useless if retries can send twice. Sends are idempotent:
+- Each send has an idempotency key.
+- Workers claim jobs with Postgres <code>FOR UPDATE SKIP LOCKED</code>.
+- An orphan reaper recovers jobs whose worker died mid-claim.
+- Bounces and unsubscribes cancel the rest of a sequence.</p>
+<p>If the LLM's decision is invalid, the system falls back to a safe template rather than guessing.</p>
+<h2>What I'd tell another team</h2>
+<ul>
+<li><strong>Put the guard at the chokepoint.</strong> One gate that every channel passes through beats a check in each sender.</li>
+<li><strong>Make the model show its source.</strong> Then verify the source mechanically, without asking another model.</li>
+<li><strong>Treat "the checker failed" as "no".</strong></li>
+<li><strong>Log the reason for every block.</strong> Debugging an agent is mostly reading why it refused.</li>
+</ul>
+<hr />
+
+<footer>Anwesh Ale · <a href="https://www.anwesh.me">anwesh.me</a> · <a href="https://github.com/anwesh2410">GitHub</a> · <a href="https://www.linkedin.com/in/anwesh-ale">LinkedIn</a></footer>
+</main></body></html>
